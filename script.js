@@ -1,4 +1,5 @@
 let movies = [];
+console.log(movies);
 
 let judulFilmDOM = document.getElementById('judul-film');
 let tahunFilmDOM = document.getElementById('tahun-film');
@@ -7,10 +8,9 @@ let reviewFilmDOM = document.getElementById('review-film');
 let rowDOM = document.getElementById('tbody');
 let simpanDOM = document.getElementById('simpan');
 
-let allList = localStorage.getItem('daftar-film');
+let allList = localStorage.getItem('baris-film');
 let allListJson = JSON.parse(allList);
 rowDOM.innerHTML = allListJson;
-
 
 simpanDOM.addEventListener('click', (e) => {
   e.preventDefault();
@@ -38,6 +38,6 @@ simpanDOM.addEventListener('click', (e) => {
   genreFilmDOM.value = "";
   reviewFilmDOM.value = "";
 
-  localStorage.setItem('daftar-film', JSON.stringify(rowDOM.innerHTML));
+  localStorage.setItem('baris-film', JSON.stringify(rowDOM.innerHTML));
   }
 });
