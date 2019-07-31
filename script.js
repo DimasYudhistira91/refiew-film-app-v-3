@@ -1,14 +1,18 @@
 let movies = [];
 
+let judulFilmDOM = document.getElementById('judul-film');
+let tahunFilmDOM = document.getElementById('tahun-film');
+let genreFilmDOM = document.getElementById('genre-film');
+let reviewFilmDOM = document.getElementById('review-film');
+let rowDOM = document.getElementById('tbody');
+let simpanDOM = document.getElementById('simpan');
 
-var judulFilmDOM = document.getElementById('judul-film');
-var tahunFilmDOM = document.getElementById('tahun-film');
-var genreFilmDOM = document.getElementById('genre-film');
-var reviewFilmDOM = document.getElementById('review-film');
-var simpanDOM = document.getElementById('simpan');
+let allList = localStorage.getItem('daftar-film');
+let allListJson = JSON.parse(allList);
+rowDOM.innerHTML = allListJson;
 
 
-simpanDOM.addEventListener('click', function(e) {
+simpanDOM.addEventListener('click', (e) => {
   e.preventDefault();
 
   if(judulFilmDOM.value === "",
@@ -16,6 +20,7 @@ simpanDOM.addEventListener('click', function(e) {
   genreFilmDOM.value === "",
   reviewFilmDOM.value === "") {
     alert('ada yang belum di isi');
+
   } else {
   
   let movie = {
@@ -25,13 +30,14 @@ simpanDOM.addEventListener('click', function(e) {
   review : reviewFilmDOM.value
   }
 
+  rowDOM.innerHTML += '<tr><th id="judul-film" scope="row">' + movie.judul + '</th><td id="tahun-film">' + movie.tahun + '</td><td id="genre-film">' + movie.genre + '</td><td id="review-film">' + movie.review + '</td></tr>';
+
   movies.push(movie);
   judulFilmDOM.value = "";
   tahunFilmDOM.value = "";
   genreFilmDOM.value = "";
   reviewFilmDOM.value = "";
 
-  localStorage.setItem('daftar-film', JSON.stringify(movies));
+  localStorage.setItem('daftar-film', JSON.stringify(rowDOM.innerHTML));
   }
 });
-
